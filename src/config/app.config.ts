@@ -47,6 +47,18 @@ class EnvironmentVariablesValidator {
   @IsString()
   @IsOptional()
   APP_HEADER_LANGUAGE: string;
+
+  @IsString()
+  AWS_REGION: string;
+
+  @IsString()
+  AWS_ACCESS_KEY_ID: string;
+
+  @IsString()
+  AWS_SECRET_ACCESS_KEY: string;
+
+  @IsUrl({ require_tld: false })
+  AWS_SQS_QUEUE_URL: string;
 }
 
 export default registerAs<AppConfig>('app', () => {
@@ -66,5 +78,9 @@ export default registerAs<AppConfig>('app', () => {
     apiPrefix: process.env.API_PREFIX || 'api',
     fallbackLanguage: process.env.APP_FALLBACK_LANGUAGE || 'en',
     headerLanguage: process.env.APP_HEADER_LANGUAGE || 'x-custom-lang',
+    awsRegion: process.env.AWS_REGION || 'us-east-1',
+    awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+    awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    awsSqsQueueUrl: process.env.AWS_SQS_QUEUE_URL || '',
   };
 });

@@ -8,4 +8,8 @@ export type AppConfig = {
   apiPrefix: string;
   fallbackLanguage: string;
   headerLanguage: string;
+  awsRegion: string;
+  awsAccessKeyId: string;
+  awsSecretAccessKey: string;
+  awsSqsQueueUrl: string;
 };

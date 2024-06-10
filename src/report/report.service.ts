@@ -9,6 +9,8 @@ export class ReportService {
   private sqs: AWS.SQS;
 
   constructor(private configService: ConfigService<AllConfigType>) {
+    console.log('IN THE CONSTRUCTOR');
+
     AWS.config.update({
       region: this.configService.get('app.awsRegion', {
         infer: true,
@@ -36,7 +38,10 @@ export class ReportService {
         infer: true,
       })!,
     };
-
-    return this.sqs.sendMessage(params).promise();
+    try {
+      return this.sqs.sendMessage(params).promise();
+    } catch (error) {
+      throw error;
+    }
   }
 }
